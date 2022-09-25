@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MessageMail>
+
+@if (Model != null)
+{
+    @foreach (var message in Model)
+    {
+        <div class="message">
+            <div class="message-sender-time">
+                <span class="message-sender">@message.Sender</span>
+                <span class="message-time">@message.Time</span>
+            </div>
+            <p class="message-title"><b>Title:</b> @message.Title</p>
+            <p class="message-body">@message.Body</p>
+        </div>
+    }
+}

@@ -1,0 +1,153 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: rgb(46,51,56);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(32,34,37);
+    border-radius: 10px;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 10px;
+    background-color: rgb(220,255,255);
+}
+
+input, textarea {
+    outline: none;
+}
+
+textarea{
+    resize:none;
+}
+
+.container {
+    margin-top: 20px;
+}
+/* form */
+
+.form-elements {
+    margin-top: 20px;
+}
+
+.labels-account {
+    font-size: 20px;
+}
+
+.form-container {
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.btn-app {
+    border-radius: 10px;
+}
+.info-account{
+    font-size:20px;
+    font-weight:bold;
+}
+/* message */
+
+.message-body{
+    display:none;
+    font-size:14px;
+}
+
+.message-display{
+    background-color:black;
+    border-radius: 20px;
+
+}
+.message-wrapper {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color:white;
+    padding: 0 10px;
+}
+
+.messages-user{
+    font-size:30px;
+    color:white;
+    font-weight:500;
+    text-align: center;
+}
+
+.message{
+    border-bottom: 2px solid gray;
+    padding: 10px 30px;
+}
+
+.message-sender-time{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.message-sender{
+    font-size: 20px;
+    font-weight:500;
+}
+
+.message-time{
+    font-size:16px;
+    color:gray;
+}
+
+.message-title{
+    font-size:18px; 
+    margin-top:10px;
+    color:chocolate;
+    font-weight: 500;
+}
+.message-title b{
+    color: black;
+}
+.message-body, .message-title {
+    word-wrap: break-word;
+}
+.sender-display{
+    padding:0;
+    height:95vh;
+}
+#user-wrapper{
+    height: 85%;
+}
+#receiver-wrapper{
+    height:20vh;
+}
+.receiver-display{
+    margin-top:20px;
+    height:35vh;
+}
+@media (max-width: 768px){
+    .sender-display{
+        margin-top:20px;
+    }
+}

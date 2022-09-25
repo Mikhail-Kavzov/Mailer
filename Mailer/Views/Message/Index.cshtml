@@ -1,0 +1,40 @@
+﻿@model MessageViewModel
+@{
+    ViewBag.Scripts = "js/site.js";
+}
+<div class="page-wrapper row">
+    <div class="message-form-receiver-container col-md-6">
+        <div class="form-container">
+            <p class="text-center info-account">Message: </p>
+            <form method="POST" asp-action="SendMessage" data-ajax="true" data-ajax-success="OnSuccessSendMessage" data-ajax-method="POST">
+                @Html.ValidationSummary(true)
+                <div class="form-group form-elements">
+                    <label class="control-label labels-account" asp-for="Receiver">Receiver: </label>
+                    <input type="text" class="form-control" asp-for="Receiver" />
+                    @Html.ValidationMessageFor(m => m.Receiver)
+                </div>
+                <div class="form-group form-elements">
+                    <label class="control-label labels-account" asp-for="Title">Message Title: </label>
+                    <input type="text" class="form-control" asp-for="Title" />
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+                <div class="form-group form-elements">
+                    <label class="control-label labels-account" asp-for="Body">Message: </label>
+                    <textarea asp-for="Body" class="form-control"></textarea>
+                    @Html.ValidationMessageFor(m => m.Body)
+                </div>
+                <div class="btn-group-justified form-elements">
+                    <input type="submit" class="btn btn-primary btn-app" id="submit-btn" value="Send A Message" />
+                </div>
+            </form>
+        </div>
+        <div class="message-display receiver-display">
+            <p class="messages-user">Messages: </p>
+            <div class="message-wrapper" id="receiver-wrapper"></div>
+        </div>
+    </div>
+    <div class="message-display sender-display col-md-6">
+        <p class="messages-user" id="account-user" >Mail</p>
+        <div class="message-wrapper" id="user-wrapper"></div>
+    </div>
+</div>

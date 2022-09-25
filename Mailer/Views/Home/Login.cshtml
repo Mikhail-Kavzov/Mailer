@@ -1,0 +1,16 @@
+﻿@model LoginViewModel
+
+<div class="form-container col-md-6">
+    <p class="text-center info-account">Login</p>
+    <form role="form" method="POST" asp-action="Login">
+        @Html.ValidationSummary(true)
+        <div class="form-group form-elements">
+            <label class="control-label labels-account" asp-for="Name">Name: </label>
+            <input type="text" asp-for="Name" class="form-control" placeholder="Name..." />
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="btn-group-justified form-elements">
+            <input type="submit" class="btn btn-primary btn-app" value="Log In" />
+        </div>
+    </form>
+</div>
