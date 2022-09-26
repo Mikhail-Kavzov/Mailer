@@ -78,6 +78,7 @@ textarea{
 .message-body{
     display:none;
     font-size:14px;
+    font-weight:500;
 }
 
 .message-display{
@@ -150,4 +151,8 @@ textarea{
     .sender-display{
         margin-top:20px;
     }
+}
+
+.msg-block-display{
+    display:block;
 }

@@ -1,8 +1,6 @@
 ﻿using Mailer.Models;
 using Mailer.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
-using System.Xml;
 
 namespace Mailer.Controllers
 {

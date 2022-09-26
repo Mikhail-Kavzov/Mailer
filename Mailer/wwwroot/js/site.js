@@ -11,14 +11,18 @@ function getUserMessages(user, time, url, selector) {
         dataType: 'html',
         data: { User: user, Time: time.toJSON() },
         success: function (data) {
-            if (data !== '')
+            if (data !== '') {
                 $(selector).append(data);
+                $(selector).children().children('.message-title').each(function () {
+                    $(this).click(() => $(this).next().toggleClass('msg-block-display'));
+                });
+            }
         }
     });
 
 }
 
-function OnSuccessSendMessage(){
+function OnSuccessSendMessage() {
     let newReceiver = $('#Receiver').val();
     let title = $('#Title').val();
     let body = $('#Body').val();
@@ -45,5 +49,6 @@ if (userName !== null) {
     setTimeout(() => getUserMessages(userName, new Date(0), '/Message/DisplayReceiverMessages/', '#user-wrapper'));
     setInterval(() => { getUserMessages(userName, dateTimeUser, '/Message/DisplayReceiverMessages/', '#user-wrapper'); dateTimeUser = new Date(); }, timeInterval);
 }
+
 
 
