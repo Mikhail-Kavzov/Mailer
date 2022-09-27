@@ -3,11 +3,8 @@ using System.Runtime.InteropServices;
 
 namespace Mailer.Repository
 {
-    public interface IMessageRepository
+    public interface IMessageRepository:IRepository<MessageMail>
     {
-        void Create(MessageMail item);
-        Task<IEnumerable<MessageMail>> GetAllAsync();
         Task<IEnumerable<MessageMail>> GetRangeByReceiverAsync(string Receiver, DateTime time);
-        Task SaveChangesAsync();
     }
 }

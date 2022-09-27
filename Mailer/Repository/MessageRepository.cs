@@ -1,6 +1,7 @@
 ﻿using Mailer.Context;
 using Mailer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 
 namespace Mailer.Repository
 {

@@ -13,9 +13,12 @@ internal class Program
         builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
 
         builder.Services.AddScoped<IMessageRepository,MessageRepository>();
+        builder.Services.AddScoped<IUserRepository,UserRepository>();
+
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-
+        builder.Services.AddDistributedMemoryCache();
+        builder.Services.AddSession();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -28,7 +31,7 @@ internal class Program
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
-
+        app.UseSession();
         app.UseRouting();
 
         app.UseAuthorization();

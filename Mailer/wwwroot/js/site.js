@@ -3,7 +3,7 @@ let previousReceiver = null;
 let dateTimeReceiver = new Date();
 let dateTimeUser = new Date();
 let userName = getCookie("Name") ?? null;
-
+let userList = new Array();
 function getUserMessages(user, time, url, selector) {
     $.ajax({
         url: url,
@@ -48,7 +48,41 @@ if (userName !== null) {
     $('#account-user').text(userName);
     setTimeout(() => getUserMessages(userName, new Date(0), '/Message/DisplayReceiverMessages/', '#user-wrapper'));
     setInterval(() => { getUserMessages(userName, dateTimeUser, '/Message/DisplayReceiverMessages/', '#user-wrapper'); dateTimeUser = new Date(); }, timeInterval);
+    setTimeout(() => updateUserList('/User/GetUsers/'));
+    const userInterval=20000;
+    setInterval(() => updateUserList('/User/GetUsers/'),userInterval);
 }
 
-
-
+function updateUserList(url) {
+    $.ajax({
+        url: url,
+        method: 'post',
+        dataType: 'json',
+        success: function (data) {
+            if (data !== '') {
+                userList = data;
+            }
+        }
+    });
+}
+function appendDropdown(list) {
+    if (list.length === 0)
+        return;
+    $.each(list, function (key, value) {
+        let element = $("<li></li>").text(value);
+        $('#dropdown').append(element);
+    });
+    $('#dropdown').children().each(function () { $(this).click(() => { $('#Receiver').val($(this).text()); $('#dropdown').children().remove(); }); });
+}
+$('#Receiver').keyup(function () {
+    $('#dropdown').children().remove();
+    let textVal = $('#Receiver').val();
+    if (textVal === '')
+        return;
+    let newList = new Array();
+    $.each(userList, function (key, value) {
+        if (value.startsWith(textVal))
+            newList.push(value);
+    });
+    appendDropdown(newList);
+});

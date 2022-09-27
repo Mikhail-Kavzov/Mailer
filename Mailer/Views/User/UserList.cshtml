@@ -1,0 +1,9 @@
+﻿@model IEnumerable<string>
+
+@if (Model != null)
+{
+    foreach (var name in Model)
+    {
+        <li class="userElement">@name</li>
+    }
+}

@@ -1,4 +1,5 @@
-﻿using Mailer.Models;
+﻿using Mailer.Converter;
+using Mailer.Models;
 using Mailer.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,23 +40,16 @@ namespace Mailer.Controllers
                 await _messageRepository.SaveChangesAsync();
                 return Content("");
             }
-            return View("Index",model);
-        }
-
-        [NonAction]
-        private static DateTime ConvertFromUTCTime(string Time)
-        {
-            if (!DateTime.TryParse(Time, out DateTime time))
-                throw new ArgumentException("DateTime is not correct");
-            return time;
+            return View("Index", model);
         }
 
         [HttpPost]
         public async Task<IActionResult> DisplayReceiverMessages(string User, string Time)
         {
-            var time = ConvertFromUTCTime(Time);
+            var time = TimeConverter.ConvertFromUTCTime(Time);
             var messages = await _messageRepository.GetRangeByReceiverAsync(User, time);
             return PartialView("Message", messages);
         }
+
     }
 }
