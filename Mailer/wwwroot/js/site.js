@@ -2,7 +2,7 @@
 let previousReceiver = null;
 let dateTimeReceiver = new Date();
 let dateTimeUser = new Date();
-let userName = getCookie("Name") ?? null;
+let userName = $('#SenderId').val() ?? null;
 let userList = new Array();
 function getUserMessages(user, time, url, selector) {
     $.ajax({
@@ -35,12 +35,6 @@ function OnSuccessSendMessage() {
     }
     getUserMessages(newReceiver, dateTimeReceiver, '/Message/DisplayReceiverMessages/', '#receiver-wrapper');
     dateTimeReceiver = new Date();
-}
-
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
 if (userName !== null) {

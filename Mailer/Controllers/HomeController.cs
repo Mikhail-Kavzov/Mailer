@@ -7,6 +7,7 @@ namespace Mailer.Controllers
     public class HomeController : Controller
     {
         private readonly IUserRepository _userRepository;
+
         public HomeController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -22,8 +23,7 @@ namespace Mailer.Controllers
             {
                 _userRepository.Create(new() { Name = model.Name });
                 await _userRepository.SaveChangesAsync();
-                HttpContext.Response.Cookies.Append("Name", model.Name);
-                return RedirectToAction("Index", "Message");
+                return RedirectToAction("Index", "Message", new { Name = model.Name });
             }
             return View(model);
         }

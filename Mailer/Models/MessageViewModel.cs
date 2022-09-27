@@ -6,6 +6,7 @@ namespace Mailer.Models
     {
         [Required(ErrorMessage = "Enter receiver")]
         public string? Receiver { get; set; }
+        public string? Sender { get; set; }
         [Required(ErrorMessage = "Enter title")]
         public string? Title { get; set; }
         [Required(ErrorMessage = "Enter message")]

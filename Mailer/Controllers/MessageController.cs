@@ -14,7 +14,12 @@ namespace Mailer.Controllers
             _messageRepository = messageRepository;
         }
 
-        public IActionResult Index() => View();
+
+        public IActionResult Index(string Name)
+        {
+            ViewBag.User = Name;
+            return View();
+        }
 
         [NonAction]
         private static MessageMail CreateNewMessage(MessageViewModel model, string? sender)
@@ -35,11 +40,11 @@ namespace Mailer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var sender = HttpContext.Request.Cookies["Name"];
-                _messageRepository.Create(CreateNewMessage(model, sender));
+                _messageRepository.Create(CreateNewMessage(model, model.Sender));
                 await _messageRepository.SaveChangesAsync();
                 return Content("");
             }
+            ViewBag.User = model.Sender;
             return View("Index", model);
         }
 

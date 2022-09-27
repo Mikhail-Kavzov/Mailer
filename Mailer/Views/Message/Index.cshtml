@@ -8,22 +8,23 @@
             <p class="text-center info-account">Message: </p>
             <form method="POST" asp-action="SendMessage" data-ajax="true" data-ajax-success="OnSuccessSendMessage" data-ajax-method="POST">
                 @Html.ValidationSummary(true)
+                <input asp-for="Sender" type="hidden" value="@ViewBag.User" id="SenderId" />
                 <div class="form-group form-elements">
                     <label class="control-label labels-account" asp-for="Receiver">Receiver:</label>
                     <input type="text" class="form-control" asp-for="Receiver" autocomplete="off" />
-                    @Html.ValidationMessageFor(m => m.Receiver)
+                    <span asp-validation-for="Receiver" class="text-danger"></span>
                     <ul id="dropdown" class="dropdown">
                     </ul>
                 </div>
                 <div class="form-group form-elements">
                     <label class="control-label labels-account" asp-for="Title">Message Title: </label>
                     <input type="text" class="form-control" asp-for="Title" autocomplete="off" />
-                    @Html.ValidationMessageFor(m => m.Title)
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
                 <div class="form-group form-elements">
                     <label class="control-label labels-account" asp-for="Body">Message: </label>
                     <textarea asp-for="Body" class="form-control"></textarea>
-                    @Html.ValidationMessageFor(m => m.Body)
+                    <span asp-validation-for="Body" class="text-danger"></span>
                 </div>
                 <div class="btn-group-justified form-elements">
                     <input type="submit" class="btn btn-primary btn-app" id="submit-btn" value="Send A Message" />
@@ -36,7 +37,7 @@
         </div>
     </div>
     <div class="message-display sender-display col-md-6">
-        <p class="messages-user" id="account-user">Mail</p>
+        <p class="messages-user" id="account-user">@ViewBag.User</p>
         <div class="message-wrapper" id="user-wrapper"></div>
     </div>
 </div>
