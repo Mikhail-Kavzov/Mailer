@@ -19,7 +19,6 @@ function getUserMessages(user, time, url, selector) {
             }
         }
     });
-
 }
 
 function OnSuccessSendMessage() {
@@ -34,6 +33,7 @@ function OnSuccessSendMessage() {
         $('#receiver-wrapper').children().remove();
     }
     getUserMessages(newReceiver, dateTimeReceiver, '/Message/DisplayReceiverMessages/', '#receiver-wrapper');
+    $('#receiver-user').text(newReceiver + ' messages:');
     dateTimeReceiver = new Date();
 }
 
@@ -43,8 +43,8 @@ if (userName !== null) {
     setTimeout(() => getUserMessages(userName, new Date(0), '/Message/DisplayReceiverMessages/', '#user-wrapper'));
     setInterval(() => { getUserMessages(userName, dateTimeUser, '/Message/DisplayReceiverMessages/', '#user-wrapper'); dateTimeUser = new Date(); }, timeInterval);
     setTimeout(() => updateUserList('/User/GetUsers/'));
-    const userInterval=20000;
-    setInterval(() => updateUserList('/User/GetUsers/'),userInterval);
+    const userInterval = 20000;
+    setInterval(() => updateUserList('/User/GetUsers/'), userInterval);
 }
 
 function updateUserList(url) {
@@ -79,4 +79,12 @@ $('#Receiver').keyup(function () {
             newList.push(value);
     });
     appendDropdown(newList);
+});
+
+$(document).mouseup(function (e) {
+    let element = $("#receiver-container");
+    if (!element.is(e.target) && element.has(e.target).length === 0)
+        $('#dropdown').hide();
+    else
+        $('#dropdown').show();
 });

@@ -9,7 +9,7 @@
             <form method="POST" asp-action="SendMessage" data-ajax="true" data-ajax-success="OnSuccessSendMessage" data-ajax-method="POST">
                 @Html.ValidationSummary(true)
                 <input asp-for="Sender" type="hidden" value="@ViewBag.User" id="SenderId" />
-                <div class="form-group form-elements">
+                <div class="form-group form-elements" id="receiver-container">
                     <label class="control-label labels-account" asp-for="Receiver">Receiver:</label>
                     <input type="text" class="form-control" asp-for="Receiver" autocomplete="off" />
                     <span asp-validation-for="Receiver" class="text-danger"></span>
@@ -32,7 +32,7 @@
             </form>
         </div>
         <div class="message-display receiver-display">
-            <p class="messages-user">Messages: </p>
+            <p class="messages-user" id="receiver-user">Messages: </p>
             <div class="message-wrapper" id="receiver-wrapper"></div>
         </div>
     </div>

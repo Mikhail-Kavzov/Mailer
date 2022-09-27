@@ -146,12 +146,11 @@ textarea{
     height: 85%;
 }
 #receiver-wrapper{
-    height:20vh;
+    height:59%;
 }
 .receiver-display{
     margin-top:20px;
-    min-height:35vh;
-    height:35vh;
+    height:258px;
 }
 @media (max-width: 768px){
     .sender-display{
