@@ -8,10 +8,12 @@ namespace Mailer.Controllers
     public class MessageController : Controller
     {
         private readonly IMessageRepository _messageRepository;
+        private readonly IUserRepository _userRepository;
 
-        public MessageController(IMessageRepository messageRepository)
+        public MessageController(IMessageRepository messageRepository, IUserRepository userRepository)
         {
             _messageRepository = messageRepository;
+            _userRepository = userRepository;
         }
 
 
@@ -40,6 +42,7 @@ namespace Mailer.Controllers
         {
             if (ModelState.IsValid)
             {
+                _userRepository.Create(new() { Name = model.Receiver });
                 _messageRepository.Create(CreateNewMessage(model, model.Sender));
                 await _messageRepository.SaveChangesAsync();
                 return Content("");
