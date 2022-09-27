@@ -7,7 +7,7 @@
         <div class="form-container">
             <p class="text-center info-account">Message: </p>
             <form method="POST" asp-action="SendMessage" data-ajax="true" data-ajax-success="OnSuccessSendMessage" data-ajax-method="POST">
-                @Html.ValidationSummary(true)
+                <div class="validation text-danger" asp-validation-summary="ModelOnly"></div>
                 <input asp-for="Sender" type="hidden" value="@ViewBag.User" id="SenderId" />
                 <div class="form-group form-elements" id="receiver-container">
                     <label class="control-label labels-account" asp-for="Receiver">Receiver:</label>
